@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Learn Python</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #question {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        #options {
+            list-style-type: none;
+            padding: 0;
+        }
+        #options li {
+            margin: 10px 0;
+        }
+        #feedback {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Learn Python</h1>
+    <div id="question"></div>
+    <ul id="options"></ul>
+    <div id="feedback"></div>
+    
+    <script>
+        // Python questions and answers
+        const questions = [
+            {
+                question: 'How do you create a list in Python?',
+                options: ['list()', '[]', '{}', 'new list'],
+                correct: '[]'
+            },
+            {
+                question: 'What does "print()" do?',
+                options: ['Prints a message', 'Prints a file', 'Prints a number', 'Prints a string'],
+                correct: 'Prints a message'
+            },
+            // Add more questions here
+        ];
+        
+        let currentQuestionIndex = 0;
+        
+        // Function to display the current question
+        function displayQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            document.getElementById('question').innerText = currentQuestion.question;
+            
+            const optionsList = document.getElementById('options');
+            optionsList.innerHTML = '';
+            
+            currentQuestion.options.forEach(option => {
+                const listItem = document.createElement('li');
+                listItem.innerText = option;
+                listItem.onclick = function() {
+                    checkAnswer(option);
+                };
+                optionsList.appendChild(listItem);
+            });
+        }
+        
+        // Function to check the user's answer
+        function checkAnswer(selectedOption) {
+            const currentQuestion = questions[currentQuestionIndex];
+            const feedback = document.getElementById('feedback');
+            
+            if (selectedOption === currentQuestion.correct) {
+                feedback.innerText = 'Correct!';
+                feedback.style.color = 'green';
+            } else {
+                feedback.innerText = 'Incorrect. Try again.';
+                feedback.style.color = 'red';
+            }
+            
+            // Go to next question after a short delay
+            setTimeout(() => {
+                feedback.innerText = '';
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    displayQuestion();
+                } else {
+                    document.getElementById('question').innerText = 'You have completed the quiz!';
+                    document.getElementById('options').style.display = 'none';
+                }
+            }, 1500);
+        }
+        
+        // Initialize the first question
+        displayQuestion();
+    </script>
+</body>
+</html>
