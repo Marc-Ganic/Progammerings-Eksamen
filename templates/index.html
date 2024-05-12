@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hello World</title>
+    <title>Programering Eksamen</title>
     <link href="{{ url_for('static', filename='styles/style.css')}}" rel="stylesheet"/>
 </head>
 <body>
-
+    <h1 class="header">Main site</h1>
+    <form>
+        <p id="Game-text">Play Our new educational programing game</p>
+        <input id="GameBtn" type="submit" name="name" value="Play!"/> <!-- Value should always be the same as the if statement in main.py under def index(); -->
+    </form>
 </body>
 </html>

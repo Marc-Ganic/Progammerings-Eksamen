@@ -1,0 +1,23 @@
+*   {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Verdana, Sans-serif;
+}
+body {
+  background-color: lightgray;
+  padding: 10px;
+}
+
+.header {
+
+}
+
+p  {
+ margin-top: 5px;
+ margin-bottom: 5px;
+}
+
+#GameBtn    {
+    padding: 5px;
+}
