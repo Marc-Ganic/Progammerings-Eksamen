@@ -3,14 +3,11 @@
     padding: 0px;
     box-sizing: border-box;
     font-family: Verdana, Sans-serif;
+    text-align: center;
 }
 body {
   background-color: lightgray;
   padding: 10px;
-}
-
-.header {
-
 }
 
 p  {
@@ -18,11 +15,48 @@ p  {
  margin-bottom: 5px;
 }
 
-#GameBtn    {
+button {
     background: #22c74e;
     font-weight: bold;
     padding: 7px 10px 7px 10px;
     border-style: none;
     border-radius: 10px;
+}
 
+.question {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 7px 0px 7px 0px;
+}
+
+.Answer_button {
+    background: #a6a6a6;
+    font-weight: bold;
+    padding: 7px 10px 7px 10px;
+    border-color: #4a4a4a;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 10px;
+}
+
+#Reload {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    border-style: solid;
+    background: #3486eb;
+}
+
+#Title  {
+    padding: 15px 0px 55px 0px;
+}
+
+#card {
+    background: #f5b042;
+    border-style: solid;
+    border-color: #de9e35;
+    border-width: 5px;
+    height: 250px;
+    width: 35%;
 }

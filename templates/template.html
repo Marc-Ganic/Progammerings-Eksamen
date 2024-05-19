@@ -5,12 +5,20 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Programering Eksamen (Spillet)</title>
-        <link href="{{ url_for('static', filename='styles/style.css')}}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='styles/style.css')}}" rel="stylesheet"/>
 </head>
 <body>
-    <h1 class="header">Game</h1>
-    <form>
-        <p>Placeholder for game</p>
+    <h1 id="Title">Learn to Program using this educational site</h1>
+    <button class="question" id="card">{{ question }}</button>
+
+    <form action="/update_variable" method="post">
+        <input type="hidden" name="Answer1" value="Answer 1">
+        <input type="hidden" name="Answer2" value="Answer 2">
+        <input type="hidden" name="Answer3" value="Answer 3">
+        <input class="Answer_button" name="Answer1" type="submit" Value="A) Answer 1">
+        <input class="Answer_button" name="Answer2" type="submit" Value="B) Answer 2">
+        <input class="Answer_button" name="Answer3" type="submit" Value="C) Answer 3">
     </form>
+    <button id="Reload" type="button" name="Button" onclick="window.location.reload()">Reload Page</button>
 </body>
 </html>
