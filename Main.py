@@ -10,13 +10,9 @@ app = Flask(__name__)
 print("Starting...")
 
 
-#Placeholder questions made by blackbox AI
+#Placeholder questions (Ai questions removed after logs got lost)
 question = [
-        "What is the syntax for defining a function in Python?",
-        "How do you declare a variable in JavaScript?",
-        "What is the difference between var, let, and const in JavaScript?",
-        "What is the purpose of the __init__ method in Python classes?",
-        "What is the difference between a list and a tuple in Python?"
+        "Question 1", "Question 2", "Question 3", "Question 4", "Question 5",
 ]
 #adaptivelearning 
 class AdaptiveLearning:
