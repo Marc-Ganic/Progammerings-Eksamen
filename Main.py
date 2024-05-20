@@ -18,8 +18,41 @@ question = [
         "What is the purpose of the __init__ method in Python classes?",
         "What is the difference between a list and a tuple in Python?"
 ]
+#adaptivelearning 
+class AdaptiveLearning:
+    def __init__(self):
+        self.difficulty = 5  # Start with a medium difficulty level
+        self.min_difficulty = 1
+        self.max_difficulty = 10
 
-#TODO difficulty algorithm, Score Board, 3 health points, how to gain scorepoints and lose health.
+    def adjust_difficulty(self, correct):
+        """Adjust the difficulty based on the previous answer."""
+        if correct:
+            self.difficulty += 1
+        else:
+            self.difficulty -= 1
+        
+        # Ensure difficulty stays within bounds
+        self.difficulty = max(self.min_difficulty, min(self.max_difficulty, self.difficulty))
+        
+        return self.difficulty
+
+    def get_next_question(self):
+        """Fetch the next question based on the current difficulty."""
+        # For demonstration, we'll just return the difficulty level as the question
+        return f"Question with difficulty {self.difficulty}"
+
+# Example usage
+learning_system = AdaptiveLearning()
+
+# Simulate answering questions
+answers = [True, True, False, True, False, False, True]  # Example answers: True for correct, False for incorrect
+
+for answer in answers:
+    next_difficulty = learning_system.adjust_difficulty(answer)
+    next_question = learning_system.get_next_question()
+    print(f"Next question: {next_question}, New difficulty: {next_difficulty}")
+
 
 @app.route('/')
 def template():
