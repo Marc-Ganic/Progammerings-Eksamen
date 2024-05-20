@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Python - Adaptive Learning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .winner, .loser {
+            display: none;
+            text-align: center;
+            font-size: 2em;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .winner {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .loser {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Learn Python - Adaptive Learning</h1>
+        </div>
+        <div class="content">
+            <div class="question" id="question">
+                <!-- Question will be displayed here -->
+            </div>
+            <div class="difficulty" id="difficulty">
+                <!-- Difficulty level will be displayed here -->
+            </div>
+            <ul class="options" id="options">
+                <!-- Options will be displayed here -->
+            </ul>
+            <div class="status">
+                <p>Points: <span id="points">0</span></p>
+                <p>Health: <span id="health">5</span></p>
+            </div>
+            <div class="winner" id="winner">
+                Congratulations! You won!
+            </div>
+            <div class="loser" id="loser">
+                Game Over! You lost!
+            </div>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Learn Python</p>
+        </div>
+    </div>
+
+    <script>
+        class AdaptiveLearning {
+            constructor() {
+                this.difficulty = "Let";
+                this.difficulty_levels = ["Let", "Middel", "Svær"];
+                this.current_level_index = 0;
+            }
+
+            adjust_difficulty(correct) {
+                if (correct) {
+                    this.current_level_index = Math.min(this.current_level_index + 1, this.difficulty_levels.length - 1);
+                } else {
+                    this.current_level_index = Math.max(this.current_level_index - 1, 0);
+                }
+                this.difficulty = this.difficulty_levels[this.current_level_index];
+                return this.difficulty;
+            }
+        }
+
+        const adaptiveLearning = new AdaptiveLearning();
+        let points = 0;
+        let health = 5;
+        const MAX_POINTS = 60; // Maksimalt antal points
+
+        function updateStatus() {
+            document.getElementById('points').innerText = points;
+            document.getElementById('health').innerText = health;
+        }
+
+        async function loadNextQuestion() {
+            if (points >= MAX_POINTS) {
+        alert("Tillykke! Du har opnået det maksimale antal point. Spillet er slut.");
+        return;
+
+            }
+            if (health <= 0) {
+        alert("Desværre! Din health er faldet til 0. Du har tabt spillet. Kom tilbage igen i morgen og prøv igen :-) ");
+        return;
+            }
+
+            const questionElement = document.getElementById('question');
+            const optionsElement = document.getElementById('options');
+            const difficultyElement = document.getElementById('difficulty');
+
+            const response = await fetch(`/question?difficulty=${adaptiveLearning.difficulty}`);
+            const data = await response.json();
+            if (data.error) {
+                questionElement.innerText = 'No question found';
+                difficultyElement.innerText = '';
+                return;
+            }
+
+            questionElement.innerText = data.text;
+            difficultyElement.innerText = `Difficulty: ${adaptiveLearning.difficulty}`;
+
+            optionsElement.innerHTML = '';
+            data.options.forEach(option => {
+                const li = document.createElement('li');
+                const button = document.createElement('button');
+                button.innerText = option.text;
+                button.onclick = () => handleAnswer(option.correct);
+                li.appendChild(button);
+                optionsElement.appendChild(li);
+            });
+        }
+
+        function handleAnswer(correct) {
+            if (correct) {
+                points += 5;
+            } else {
+                health -= 1;
+            }
+            adaptiveLearning.adjust_difficulty(correct);
+            updateStatus();
+            loadNextQuestion();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStatus();
+            loadNextQuestion();
+        });
+    </script>
+</body>
+</html>

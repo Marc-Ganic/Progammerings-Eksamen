@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.header, .footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #4CAF50;
+    color: white;
+}
+.content {
+    margin: 20px 0;
+}
+.question {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+.options {
+    list-style-type: none;
+    padding: 0;
+}
+.options li {
+    margin: 5px 0;
+}
+.options button {
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+.status {
+    margin-top: 20px;
+}
